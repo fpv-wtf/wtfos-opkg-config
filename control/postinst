@@ -1,0 +1,44 @@
+#!/system/bin/sh
+CONFIG_PATH="/opt/etc/opkg.conf"
+BACKUP_PATH="${CONFIG_PATH}.bak"
+ORIGINAL_PATH="${CONFIG_PATH}.orig"
+
+DELIMITER="# WTFOS-OPKG-CONFIG"
+DELIMITER_START="${DELIMITER}-START"
+DELIMITER_END="${DELIMITER}-END"
+
+ARCH="airside"
+DEVICE=$(getprop ro.product.device)
+if [[ "$DEVICE" == *_gls ]]; then
+  ARCH="glasses"
+fi
+
+OPKG_CONFIG="${DELIMITER_START}
+src/gz entware http://bin.entware.net/armv7sf-k3.2
+src/gz fpv-wtf http://repo.fpv.wtf/pigeon
+dest root /
+dest ram /opt/tmp
+lists_dir ext /opt/var/opkg-lists
+option tmp_dir /opt/tmp
+option http_proxy http://127.0.0.1:8089
+arch all 100
+arch armv7-3.2 150
+arch pigeon-all 200
+arch pigeon-${ARCH} 250
+${DELIMITER_END}"
+
+# Backup current configuration
+cp $CONFIG_PATH $BACKUP_PATH
+
+REGEX="/${DELIMITER_START}/,/${DELIMITER_END}/"
+MATCH=$(sed -e "${REGEX}!d" $CONFIG_PATH)
+if [ -n "$MATCH" ]; then
+  # Delete old config section if available
+  sed -i "${REGEX}d" $CONFIG_PATH
+else
+  # Move original config out of the way
+  mv $CONFIG_PATH $ORIGINAL_PATH
+fi
+
+# Append our config
+echo "$OPKG_CONFIG" >> $CONFIG_PATH

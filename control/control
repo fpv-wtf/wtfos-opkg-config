@@ -1,0 +1,5 @@
+Package: wtfos-opkg-config
+Version: 0.1.0
+Maintainer: Chris L. <stylesuxx@gmail.com>
+Description: Setup opkg.conf based on your hardware.
+Architecture: pigeon-all
