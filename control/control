@@ -2,4 +2,4 @@ Package: wtfos-opkg-config
 Version: 0.2.0
 Maintainer: Chris L. <stylesuxx@gmail.com>
 Description: Setup opkg.conf based on your hardware.
-Architecture: pigeon-all
+Architecture: armv7-3.2
