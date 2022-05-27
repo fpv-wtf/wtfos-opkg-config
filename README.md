@@ -7,6 +7,8 @@ On package installation following checks and actions happen:
 2. If `/opt/etc/opkg.conf` is untouched (no `WTFOS-CONFIG` comments are found) the current configuration is moved to `/opt/etc/opkg.conf.orig`
 3. A new configuration block with delimiting comments is appended to `/opt/etc/opkg.conf`. If a `WTFOS-OPKG-CONFIG` block is present already, the old block is deleted before the new one is appended.
 
+When this package is removed (or during update) the `WTFOS-OPKG-CONFIG` block is replaced with the content of `/opt/etc/opkg.conf.orig`.
+
 ## Extending the configuration
 If you want to extend the OPKG configuration - by for example adding a dev repository of your own - your package should depend on this package.
 
