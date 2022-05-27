@@ -1,7 +1,6 @@
 NAME = $(shell cat ./control/control | grep Package | cut -d" " -f2)
 ARCH = $(shell cat ./control/control | grep Architecture | cut -d" " -f2)
-VERSION = $(shell cat ./control/control | grep Version | cut -d" " -f2)
-IPK_NAME = "${NAME}_${VERSION}_${ARCH}.ipk"
+IPK_NAME = "${NAME}_${ARCH}.ipk"
 
 all:
 	mkdir -p ipk

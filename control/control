@@ -1,5 +1,5 @@
 Package: wtfos-opkg-config
-Version: 0.2.0
+Version: 0.3.0
 Maintainer: Chris L. <stylesuxx@gmail.com>
 Description: Setup opkg.conf based on your hardware.
 Architecture: armv7-3.2
