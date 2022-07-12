@@ -8,9 +8,19 @@ DELIMITER_START="${DELIMITER}-START"
 DELIMITER_END="${DELIMITER}-END"
 
 ARCH="airside"
+SPECIFIC="au"
 DEVICE=$(getprop ro.product.device)
 if [[ "$DEVICE" == *_gls ]]; then
   ARCH="glasses"
+  SPECIFIC="v1"
+
+  if [[ "$DEVICE" == *_wm170_gls ]]; then
+    SPECIFIC="v2"
+  fi
+fi
+
+if [[ "$DEVICE" == *_wm150_tiny ]]; then
+  SPECIFIC="lite"
 fi
 
 OPKG_CONFIG="${DELIMITER_START}
@@ -25,6 +35,7 @@ arch all 100
 arch armv7-3.2 150
 arch pigeon-all 200
 arch pigeon-${ARCH} 250
+arch pigeon-${ARCH}-${SPECIFIC} 300
 ${DELIMITER_END}"
 
 # Backup current configuration
