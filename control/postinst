@@ -24,7 +24,7 @@ if [[ "$DEVICE" == *_wm150_tiny ]]; then
 fi
 
 OPKG_CONFIG="${DELIMITER_START}
-src/gz entware http://bin.entware.net/armv7sf-k3.2
+src/gz entware http://repo.fpv.wtf/entware-armv7sf-k3.2
 src/gz fpv-wtf http://repo.fpv.wtf/pigeon
 dest root /
 dest ram /opt/tmp
