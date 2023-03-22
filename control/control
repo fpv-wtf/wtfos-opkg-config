@@ -1,5 +1,5 @@
 Package: wtfos-opkg-config
-Version: 0.4.0-r2
+Version: 1.1.1
 Maintainer: Chris L. <stylesuxx@gmail.com>
 Description: Setup opkg.conf based on your hardware.
 Section: system
